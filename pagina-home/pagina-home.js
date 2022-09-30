@@ -19,7 +19,7 @@ function menu() {
   }
 }
 
-//Sumir menu quando click fora do elemento
+//Sumir menu quando click fora do element
 document.addEventListener('click', function clicar(event) {
   const menu = document.getElementById('menu');
   const botao = document.getElementById('botaoclose');
