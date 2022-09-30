@@ -19,6 +19,16 @@ function menu() {
   }
 }
 
+//Sumir menu quando click fora do elemento
+document.addEventListener('click', function clicar(event) {
+  const menu = document.getElementById('menu');
+  const botao = document.getElementById('botaoclose');
+  let click = event.target; 
+  if (!menu.contains(event.target) && !click.contains(botao)) {
+    document.body.classList.remove('menu-expanded');
+  }
+})
+
 /* === PÁGINA HOME ================================*/
 $('.carousel').carousel({
   interval: 5000
