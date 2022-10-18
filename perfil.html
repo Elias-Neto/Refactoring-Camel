@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cadastro.css">
+    <title>Tela Cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="shortcut icon"
+      href="./imgs/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+    
+</head>
+<body>
+   <!-- HEADER -->
+   <header>
+    <nav class="desktop">
+      <div class="top">
+        <a onclick="closeMenu()" href="../home/home.html">
+          <img class="logo" src="./imgs/Logo.png" alt="Logo da camel" />
+        </a>
+        <div class="search">
+          <span
+            ><img src="./imgs/search.png" alt="icone de uma lupa"
+          /></span>
+          <input type="text" placeholder="Procure na Camel" />
+        </div>
+        <a
+          onclick="colseMenu()"
+          href="../carrinho/carrinho.html"
+        >
+          <img
+            class="shopping-cart"
+            src="./imgs/carrinho-de-compras.png"
+            alt="Imagem de carrinho de compras"
+          />
+        </a>
+      </div>
+      <div class="down">
+        <ul>
+          <li class="all">
+            <button
+              aria-expanded="false"
+              aria-label="Abrir menu"
+              onclick="openMenu()"
+              class="open-menu"
+            >
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M35 20H15"
+                  stroke="#F2F2F2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M35 12H15"
+                  stroke="#F2F2F2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M27 28L15 28"
+                  stroke="#F2F2F2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              aria-expanded="true"
+              aria-label="Fechar menu"
+              onclick="closeMenu()"
+              class="close-menu"
+            >
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 10L10 30M10 10L30 30"
+                  stroke="#F2F2F2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <p  onclick="menu()">Todos</p>
+    
+          </li>
+          <li class="emphasis_categories">
+            <a href="#">Categoria 1</a>
+            <a href="#">Categoria 2</a>
+            <a href="#">Categoria 3</a>
+            <a href="#">Categoria 4</a>
+            <a href="#">Categoria 5</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="mobile">
+      <div class="top">
+        <button
+          aria-expanded="false"
+          aria-label="Abrir menu"
+          onclick="openMenu()"
+          class="open-menu"
+        >
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M35 20H15"
+              stroke="#F2F2F2"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M35 12H15"
+              stroke="#F2F2F2"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M27 28L15 28"
+              stroke="#F2F2F2"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <button
+          aria-expanded="true"
+          aria-label="Fechar menu"
+          onclick="closeMenu()"
+          class="close-menu"
+        >
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M30 10L10 30M10 10L30 30"
+              stroke="#F2F2F2"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <a onclick="closeMenu()" href="../home/home.html">
+          <img class="logo" src="./imgs/Logo.png" alt="Logo da camel" />
+        </a>
+        <a
+          onclick="closeMenu()"
+          href="../carrinho/carrinho.html"
+        >
+          <img
+            class="shopping-cart"
+            src="./imgs/carrinho-de-compras.png"
+            alt="Imagem de carrinho de compras"
+          />
+        </a>
+      </div>
+      <div class="search">
+        <span><img src="./imgs/search.png" alt="icone de uma lupa" /></span>
+        <input type="text" placeholder="Procure na Camel" />
+      </div>
+    </nav>
+    <div class="menu">
+      <ul>
+        <li><a href="#">Categoria 1</a></li>
+        <li><a href="#">Categoria 2</a></li>
+        <li><a href="#">Categoria 3</a></li>
+        <li><a href="#">Categoria 4</a></li>
+        <li><a href="#">Categoria 5</a></li>
+        <li><a href="#">Categoria 6</a></li>
+        <li><a href="#">Categoria 7</a></li>
+        <li><a href="#">Categoria 8</a></li>
+        <li><a href="#">Categoria 9</a></li>
+        <li><a href="#">Categoria 10</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="wrapper">
+    <main>
+      <section class="dadosPessoais">
+        <div class="imageInput">
+          <div class="image">
+          </div>
+          <button>
+            Selecionar Imagem
+          </button>
+        </div>
+        
+        <div class="datasInputs">
+          <h2>DADOS PESSOAIS:</h2>
+          <form action="">
+            <input type="text" name="nome" id="nome" placeholder="Nome">
+            <input type="password" name="senha" id="senha" placeholder="Senha">
+            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="teleone" name="telefone" id="telefone" placeholder="Telefone">
+            <input type="CPF" name="CPF" id="CPF" placeholder="CPF">
+          </form>
+        </div>
+      </section>
+  
+      <section class="dadosEndereco">
+        <h2>CADASTRO DE ENDERECO:</h2>
+        <form action="">
+          <input type="text" name="endereco" id="endereco" placeholder="Rua">
+          <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+          <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+          <input type="text" name="numero" id="numero" placeholder="Número">
+          <input type="text" name="cep" id="cep" placeholder="CEP">
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="top">
+      <img
+        src="./imgs/Logo.png"
+        alt="logo"
+      />
+      <p>
+        ©2022 - CAMEL ELETRICIDADE. <br /><br />
+        Todos os direitos reservados.
+      </p>
+    </div>
+    <div class="down">
+      <a href="https://www.facebook.com/cameleletricidade/" target="_blank"><i class="fa-brands fa-facebook fa-2xl fa-pull-left"></i></a>
+
+      <a href="https://www.instagram.com/cameleletricidade/" target="_blank"><i class="fa-brands fa-instagram-square fa-2xl fa-pull-left"></i></a>
+
+      <a href="https://www.google.com/maps/place/Camel+Eletricidade+Caruaru/@-8.252883,-35.972592,15z/data=!4m5!3m4!1s0x0:0x8c8a11189ca74d7f!8m2!3d-8.252883!4d-35.972592" target="_blank"><i class="fa-solid fa-location-dot fa-2xl fa-pull-left"></i></a>
+
+      <a href="https://wa.me/5511987654321" target="_blank"><i class="fa-brands fa-whatsapp-square fa-2xl fa-pull-left --fa-fade-opacity-1"></i></a>
+    </div>
+  </footer>
+
+  <script src="./perfil.js"></script>
+  <script src="https://kit.fontawesome.com/0054bfb566.js" crossorigin="anonymous"></script>
+</body>
+</html>
