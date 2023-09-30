@@ -3,6 +3,12 @@ const Cliente = require("../models/cliente");
 //biblioteca responsável pela criptografia
 const bcrypt = require("bcrypt");
 
+
+const {
+  validateString,
+  validatePassword,
+} = require("../helpers/validations");
+
 module.exports = class ClienteController {
   //Cria um cliente
   static async create(req, res) {
@@ -10,18 +16,26 @@ module.exports = class ClienteController {
     const { nome, email, senha, confirmaSenha } = req.body;
 
     //Realiza as validações
-    if (!nome) {
-      res.status(422).json({ message: "O nome é obrigatório" });
-      return;
+
+    const validateNomeResult = validateString(nome);
+    if (validateNomeResult) {
+      return res.status(validateNomeResult.status).json(validateNomeResult);
     }
+
+
+
     if (!email) {
       res.status(422).json({ message: "O email é obrigatório" });
       return;
     }
-    if (!senha) {
-      res.status(422).json({ message: "A senha é obrigatória" });
-      return;
+
+    const validatePasswordResult = validatePassword(senha);
+    if (validatePasswordResult) {
+      return res.status(validatePasswordResult.status).json(validatePasswordResult);
     }
+
+
+
     if (senha !== confirmaSenha) {
       res.status(422).json({
         message: "A senha e a confirmação da senha precisam ser iguais.",
@@ -78,14 +92,14 @@ module.exports = class ClienteController {
   static async updateEmail(req, res) {
     const { id, email } = req.body;
 
-    if(!id){
+    if (!id) {
       res.status(422).json({ message: "O usuário é obrigatório" });
       return;
     }
-    
+
     const cliente = await Cliente.findByPk(id);
-    
-    if(!cliente){
+
+    if (!cliente) {
       res.status(422).json({ message: "Informe usuário válido" });
       return;
     }
@@ -172,10 +186,10 @@ module.exports = class ClienteController {
 
   static async updateCPF(req, res) {
     const { id, cpf } = req.body;
-    
-      //validações
-      //verifica se o usuário existe no BD
-    if(!id){
+
+    //validações
+    //verifica se o usuário existe no BD
+    if (!id) {
       res.status(422).json({ message: "O usuário é obrigatório" });
       return;
     }
@@ -212,10 +226,10 @@ module.exports = class ClienteController {
       res.status(422).json({ message: "CPF incorreto." });
       return;
     }
-    
+
     //verifica a quantidade de dígitos
 
-    if(cpf.toString().length !== 11){
+    if (cpf.toString().length !== 11) {
       res.status(422).json({ message: "CPF incorreto." });
       return
     }
@@ -231,14 +245,14 @@ module.exports = class ClienteController {
 
   static async updateTelefone(req, res) {
     const { id, telefone } = req.body;
-    
+
     //validações
     //verifica se o usuário existe no BD
-    if(!id){
+    if (!id) {
       res.status(422).json({ message: "O usuário é obrigatório" });
       return;
     }
-    
+
     const cliente = await Cliente.findByPk(id);
 
     if (!cliente) {

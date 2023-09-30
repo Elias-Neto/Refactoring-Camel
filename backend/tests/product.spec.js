@@ -9,9 +9,8 @@ const formatMessageOutput = (func, parm, expectedStatus) => {
 
   const { validationStatus, message } = result;
 
-  return `${
-    validationStatus === expectedStatus ? "✅" : "❌"
-  } Erro: ${message}`;
+  return `${validationStatus === expectedStatus ? "✅" : "❌"
+    } Erro: ${message}`;
 };
 
 const {
