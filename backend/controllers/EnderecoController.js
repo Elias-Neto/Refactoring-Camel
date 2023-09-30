@@ -1,13 +1,26 @@
 const Cliente = require("../models/cliente");
 const Endereco = require("../models/endereco");
 
+const {
+  validateIdCliente,
+  validateCep,
+  validateRua,
+  validateBairro,
+  validateNumero,
+  validateCidade,
+  validateEstado
+} = require("../helpers/validations");
+
 module.exports = class EnderecoController {
+  //Cria um endereço
   static async create(req, res) {
+    //recebe dados da requisição
     const { cep, rua, bairro, numero, complemento, cidade, uf, id_cliente } =
       req.body;
 
+
     //validações
-    if(!id_cliente){
+    if (!id_cliente) {
       res.status(422).json({ message: "O Usuário é obrigatório!" });
       return;
     }
@@ -31,60 +44,38 @@ module.exports = class EnderecoController {
       return;
     }
 
-    if (!cep) {
-      res.status(422).json({ message: "O CEP deve ser informado" });
-      return;
+
+    const validateCepResult = validateCep(cep);
+    if (validateCepResult) {
+      return res.status(validateCepResult.status).json(validateCepResult);
     }
 
-    //verifica se apenas de números informados
-    if (!/^[0-9]+$/.test(cep)) {
-      res.status(422).json({ message: "Informe apenas os números do CEP." });
-      return;
+    const validateRuaResult = validateRua(rua);
+    if (validateRuaResult) {
+      return res.status(validateRuaResult.status).json(validateRuaResult);
     }
 
-    //verifica a quantidade de dígitos
-    if (cep.toString().length !== 8) {
-      res.status(422).json({ message: "CEP incorreto." });
-      return;
+    const validateBairroResult = validateBairro(bairro);
+    if (validateBairroResult) {
+      return res.status(validateBairroResult.status).json(validateBairroResult);
     }
 
-    if (!rua) {
-      res.status(422).json({ message: "A rua deve ser informada" });
-      return;
+    const validateNumeroResult = validateNumero(numero);
+    if (validateNumeroResult) {
+      return res.status(validateNumeroResult.status).json(validateNumeroResult);
     }
 
-    if (!bairro) {
-      res.status(422).json({ message: "O bairro deve ser informado" });
-      return;
+    const validateCidadeResult = validateCidade(cidade);
+    if (validateCidadeResult) {
+      return res.status(validateCidadeResult.status).json(validateCidadeResult);
     }
 
-    if (!numero) {
-      res
-        .status(422)
-        .json({ message: "O número da residência deve ser informado" });
-      return;
+
+    const validateUfResult = validateEstado(uf);
+    if (validateUfResult) {
+      return res.status(validateUfResult.status).json(validateUfResult);
     }
 
-    //verifica se apenas de números informados
-    if (!/^[0-9]+$/.test(numero)) {
-      res.status(422).json({ message: "Informe apenas números" });
-      return;
-    }
-
-    if (!cidade) {
-      res.status(422).json({ message: "A cidade deve ser informada" });
-      return;
-    }
-
-    if (!uf) {
-      res.status(422).json({ message: "O estado deve ser informado" });
-      return;
-    }
-
-    if (uf.length !== 2) {
-      res.status(422).json({ message: "Informe apenas a sigla do estado" });
-      return;
-    }
 
     const endereco = new Endereco({
       cep,
@@ -229,4 +220,4 @@ module.exports = class EnderecoController {
       console.log(`Falha na atualização: ${error}`);
     }
   }
-};
+}
