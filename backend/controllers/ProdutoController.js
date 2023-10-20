@@ -10,6 +10,7 @@ const {
   validateBrand,
   validateAvailable,
   validateSubcategory,
+  validateProduct,
 } = require("../helpers/validations");
 
 class ProdutoController {
@@ -90,14 +91,17 @@ class ProdutoController {
   }
 
   static async getProduto(req, res) {
-    const id = req.params.id;
-
-    const produto = await Produto.findByPk(id);
-
-    if (!produto) {
-      res.status(422).json({ message: "Produto não encontrado." });
-      return;
+    let id = req.params.id;
+    if (!isNaN(id)) {
+      id = parseInt(id);
     }
+    const validateProductResult = await validateProduct(id);
+    if (validateProductResult) {
+      return res
+        .status(validateProductResult.status)
+        .json(validateProductResult);
+    }
+    const produto = await Produto.findByPk(id);
 
     res.status(200).json({ produto });
   }
@@ -129,17 +133,17 @@ class ProdutoController {
       id_subcategoria,
     } = req.body;
 
-    // validações
-
+    // validações 
     const validateIdResult = validateId(id);
     if (validateIdResult) {
       return res.status(validateIdResult.status).json(validateIdResult);
     }
 
-    const produtoExiste = await Produto.findByPk(id);
-    if (!produtoExiste) {
-      res.status(404).json({ message: "Produto não encontrado." });
-      return;
+    const validateProductResult = await validateProduct(id);
+    if (validateProductResult) {
+      return res
+        .status(validateProductResult.status)
+        .json(validateProductResult);
     }
 
     const validateNameResult = validateName(nome);

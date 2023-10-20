@@ -1,5 +1,6 @@
 const Endereco = require("../models/endereco");
 const Subcategoria = require("../models/subcategoria");
+const Produto = require("../models/produto");
 // const Cliente = require("../models/cliente");
 // const Endereco = require("../models/endereco");
 
@@ -94,7 +95,7 @@ function validateBrand(brand) {
 }
 
 function validateAvailable(available) {
-  if (!available) {
+  if (typeof available !== "boolean" && !available) {
     return {
       status: 422,
       message: "A disponibilidade é obrigatória.",
@@ -118,7 +119,7 @@ async function validateSubcategory(subcategory) {
     };
   }
 
-  if (typeof (subcategory) !== "number") {
+  if (typeof subcategory !== "number") {
     return {
       status: 422,
       message: "Informe um valor numérico no campo de Subcategoria.",
@@ -368,6 +369,7 @@ module.exports = {
   validateBrand,
   validateAvailable,
   validateSubcategory,
+  validateProduct,
   validateString,
   validatePassword,
   validateIdCliente,
